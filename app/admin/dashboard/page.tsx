@@ -1,6 +1,6 @@
 "use client";
 
-import ProtectedRoutpage from "@/app/components/ProtectedRout";
+import ProtectedRoutpage from "@/app/components/ProtectedRoute";
 import { client } from "@/sanity/lib/client";
 import React from "react";
 import { useEffect, useState } from "react";
