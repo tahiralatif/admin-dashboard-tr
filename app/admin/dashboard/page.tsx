@@ -1,6 +1,6 @@
 "use client";
 
-import ProtectedRoutpage from "@/app/components/protected/page";
+import ProtectedRoutpage from "@/app/components/ProtectedRout";
 import { client } from "@/sanity/lib/client";
 import React from "react";
 import { useEffect, useState } from "react";
@@ -8,11 +8,7 @@ import Swal from "sweetalert2";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 
-interface CartItem {
-  productId: string;
-  quantity: number;
-  price: number;
-}
+
 
 interface Order {
   _id: string;
@@ -127,7 +123,7 @@ export default function AdminDashboard() {
           <nav className="bg-teal-800 p-4 text-white shadow-lg flex justify-between">
             <h2 className="text-2xl font-bold text-white">Admin Dashboard</h2>
             <div className="flex space-x-4">
-              {["All", "Pending", "success", "dispatched", "Cancelled"].map((status) => (
+              {["All", "Pending", "success", "dispatched", "Cancelled" , 'Log Out'].map((status) => (
                 <button
                   key={status}
                   className={`px-4 py-2 rounded-lg transition-all duration-300 hover:bg-teal-900 hover:text-white focus:outline-none
