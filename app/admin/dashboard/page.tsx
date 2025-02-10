@@ -8,8 +8,6 @@ import Swal from "sweetalert2";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 
-
-
 interface Order {
   _id: string;
   _type: string;
@@ -62,9 +60,8 @@ export default function AdminDashboard() {
         }`
       )
       .then((data) => setOrders(data))
-      .catch((error) => console.log("error fetching orders", error));
+      .catch(() => console.log("error fetching orders")); // Removed unused `error` variable
   }, []);
-  
 
   const filteredOrders = filter === "All" ? orders : orders.filter((order) => order.status === filter);
 
@@ -90,7 +87,7 @@ export default function AdminDashboard() {
       setOrders((prevOrders) => prevOrders.filter((order) => order._id !== orderId));
       Swal.fire("Deleted!", "Your file has been deleted.", "success");
     } catch (error) {
-      console.error("Error deleting order:", error);
+      console.error("Error deleting order:", error); // `error` is used here
       Swal.fire("Error!", "Failed to delete order", "error");
     }
   };
@@ -112,6 +109,7 @@ export default function AdminDashboard() {
         Swal.fire("Success!", "Order Cancelled successfully", "success");
       }
     } catch (error) {
+      console.error("Error updating order status:", error); // `error` is used here
       Swal.fire("Error!", "Failed to update order status", "error");
     }
   };
@@ -123,7 +121,7 @@ export default function AdminDashboard() {
           <nav className="bg-teal-800 p-4 text-white shadow-lg flex justify-between">
             <h2 className="text-2xl font-bold text-white">Admin Dashboard</h2>
             <div className="flex space-x-4">
-              {["All", "Pending", "success", "dispatched", "Cancelled" , 'Log Out'].map((status) => (
+              {["All", "Pending", "success", "dispatched", "Cancelled", "Log Out"].map((status) => (
                 <button
                   key={status}
                   className={`px-4 py-2 rounded-lg transition-all duration-300 hover:bg-teal-900 hover:text-white focus:outline-none
