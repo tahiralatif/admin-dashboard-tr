@@ -10,13 +10,11 @@ export default function AdminLogin() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
 
-  // Check if user is already logged in
   useEffect(() => {
     const loggedIn = localStorage.getItem("isloggedIn") === "true";
     setIsLoggedIn(loggedIn);
   }, []);
 
-  // Login Function
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -30,7 +28,6 @@ export default function AdminLogin() {
     }
   };
 
-  // Logout Function
   const handleLogout = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -45,13 +42,13 @@ export default function AdminLogin() {
         localStorage.removeItem("isloggedIn");
         setIsLoggedIn(false);
         Swal.fire("Logged Out!", "You have been logged out.", "success");
-        router.push("/admin/login"); // Redirect to login page
+        router.push("/admin");
       }
     });
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-blue-500 to-indigo-600">
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-teal-500 to-teal-700">
       {!isLoggedIn ? (
         <form
           onSubmit={handleLogin}
@@ -74,7 +71,7 @@ export default function AdminLogin() {
               name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm"
+              className="mt-1 w-full p-3 border rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 shadow-sm"
               required
             />
           </div>
@@ -92,7 +89,7 @@ export default function AdminLogin() {
               name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm"
+              className="mt-1 w-full p-3 border rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 shadow-sm"
               required
             />
           </div>
@@ -100,7 +97,7 @@ export default function AdminLogin() {
           <button
             type="submit"
             disabled={email === "" || password === ""}
-            className="mt-6 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="mt-6 w-full bg-teal-800 hover:bg-teal-700 text-white font-bold py-3 px-4 rounded-lg transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Login
           </button>
